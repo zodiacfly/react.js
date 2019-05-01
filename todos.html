@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="./node_modules/react/umd/react.development.js"></script>
+	<script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+	<script src="./node_modules/@babel/standalone/babel.js"></script>
+	<script src="./node_modules/prop-types/prop-types.js"></script>
+</head>
+<body>
+	<div id="app">
+		
+	</div>
+
+	<script type="text/babel">
+		
+		class App extends React.Component {
+			constructor (){
+				super()
+				this.state = {
+					list : ['ren', 'daniel', 'sharon', 'dora']
+				}
+				this.addList = this.addList.bind(this)
+			}
+			//set addList func to make the data in this.state changable
+			
+			addList (newList){
+				const {list} = this.state  
+					  list.unshift(newList)						
+				this.setState({list})
+			}
+			render (){
+				return (
+					<div>
+						<h1>Todo list</h1>
+					{/*send addList func and count to Add component*/}
+						<Add addList={this.addList} count={this.state.list.length}/>
+						<List list={this.state.list}/>
+					</div>
+				)
+			}
+		}
+		class List extends React.Component {
+			render (){
+				
+				return (
+					<ul>
+						{this.props.list.map((item,index) => <li key={index}>{item}</li>)}
+					</ul>
+				)
+			}
+		}
+
+		class Add extends React.Component {
+			constructor (){
+					super()
+					this.add = this.add.bind(this)
+			}
+			add (){
+				//receive new value and use addList func to push into data
+				if(!this.input.value.trim()){
+					return 
+				}
+				this.props.addList(this.input.value)
+				this.input.value = ''
+			}
+			render (){
+
+				return (
+					<div>{/*use ref to get input.value*/}
+						<input type='text' ref={input => this.input = input}/>&nbsp;&nbsp;
+						<button onClick={this.add}>Add#{this.props.count + 1}</button>
+					</div>
+				)
+			}
+		}
+
+		List.propTypes = {
+			list : PropTypes.array.isRequired
+		}
+
+		Add.propTypes = {
+			count : PropTypes.number.isRequired,
+			addList : PropTypes.func.isRequired
+		}
+
+
+		ReactDOM.render(<App />, document.querySelector('#app'))
+		
+	</script>
+
+	
+</body>
+</html>
