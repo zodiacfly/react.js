@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="./lib/react.development.js"></script>
+	<script src="./lib/react-dom.development.js"></script>
+	<script src="./lib/babel.js"></script>
+	<script src="./lib/prop-types.js"></script>
+</head>
+<body>
+	<div id="app">
+		
+	</div>
+
+	<script type="text/babel">
+		
+		class App extends React.Component {
+			constructor (){
+				super()
+				this.state = {
+					opacity : 1
+				}
+				this.handleClick = this.handleClick.bind(this)
+			}
+
+			componentDidMount (){
+				this.timeId = setInterval(() => {
+					let {opacity} = this.state
+					opacity -= 0.1
+					if(opacity <= 0){
+						opacity = 1
+					}
+					this.setState({opacity})
+				}, 200)
+			}
+			//here is using lifecycle method to clear interval
+			componentWillUnmount (){
+				clearInterval(this.timeId)
+			}
+
+			handleClick (){
+				//the following is what we usually to clear interval
+				// clearInterval(this.timeId)
+				ReactDOM.unmountComponentAtNode(document.querySelector('#app'))
+			}
+
+			render (){
+				const {msg} = this.props
+				const {opacity} = this.state
+				return (
+					<div>
+						<h3 style={{opacity}}>{msg}</h3>
+						<button onClick={this.handleClick}>Hidden</button>
+					</div>
+				)
+			}
+		}
+
+		ReactDOM.render(<App msg='Hello world'/>, document.querySelector('#app'))
+
+		
+	</script>
+
+	
+</body>
+</html>
