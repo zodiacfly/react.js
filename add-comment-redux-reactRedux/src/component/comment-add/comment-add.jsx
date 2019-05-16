@@ -25,7 +25,7 @@ export default class CommentAdd extends Component {
 	
 		const {addCom, newComment, handleNewCom} = this.props
 		if(!newComment.name.trim()){
-			alert('Please enter you name')
+			return alert('Please enter you name')
 		}
 		if(!newComment.content.trim()){
 			newComment.content = 'This user was too lazy to leave comment'
