@@ -1,0 +1,5 @@
+export const ADD_NEW_LIST = 'add_new_list'
+export const DELETE_LIST = 'delete_list'
+export const CHECKBOX_CHECKED = 'checkbox_checked'
+export const CLEAR_COMPLETED_LIST = 'clear_completed_list'
+export const SELECT_ALL_LIST = 'select_all_list'
