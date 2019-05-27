@@ -1,0 +1,116 @@
+div, input, p, span, li, ul {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style: none;
+}
+
+.container {
+	width: 500px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin: 100px auto;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	> span {
+		position: absolute;
+		top: 10px;
+		left: 15px;
+		cursor: pointer;
+		color: #999;
+		font-weight: bold;
+		font-size: 16px;
+	}
+	> input {
+		width: 100%;
+		height: 50px;
+		box-sizing: border-box;
+		border: none;
+		border-bottom: 1px solid #ccc;
+		outline: none;
+		padding-left: 45px;
+		font-size: 20px;
+	}
+	> ul {
+		padding: 0 20px 0 20px;
+		> li {
+			text-align: left;
+			padding: 10px 0;
+			border-bottom: 1px dashed #ccc;
+			position: relative;
+			&:hover button {
+					visibility: visible;
+				}
+			> input {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			> p {
+				padding-left: 35px;
+				font-size: 18px;
+				word-break: break-all;
+
+			}
+			> button {
+				position: absolute;
+				right: 0;
+				bottom: 10px;
+				visibility: hidden;
+			}
+		}
+	}
+	> footer {
+		height: 40px;
+		width: 100%;
+		font-size: 14px;
+		color: #666;
+		padding: 5px 0;
+		box-sizing: border-box;
+		> span {
+			float: left;
+			margin-left: 20px;
+			height: 30px;
+			line-height: 30px;
+			&.right {
+				float: right;
+				margin-right: 16px;
+				cursor: pointer;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+		> ul {
+			float: left;
+			margin-left: 50px;
+			height: 30px;
+			 li {
+				float: left;
+				text-align: center;
+				padding: 2px 5px;
+				margin-left: 10px;
+				margin-top: 2px;
+				cursor: pointer;
+				border: 1px solid transparent;
+				border-radius: 8px;
+				transition: all 0.5s;
+				> a {
+					color: #666;
+					text-decoration: none;
+					&.selected {
+						color : red;
+					}
+				}
+				&:hover {
+					border: 1px solid #ccc;	
+				}
+			}
+		}
+	}
+}
